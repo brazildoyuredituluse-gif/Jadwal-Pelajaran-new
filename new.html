@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jadwal X TJKT 1</title>
+
+<style>
+:root{
+    --bg:#f2f4f7;
+    --card:#ffffff;
+    --primary:#3b82f6;
+    --text:#1f2937;
+    --shadow:0 10px 25px rgba(0,0,0,.08);
+}
+
+*{box-sizing:border-box;}
+
+body{
+    margin:0;
+    font-family:"Segoe UI", Arial, sans-serif;
+    background:var(--bg);
+    color:var(--text);
+}
+
+.header{
+    background:var(--primary);
+    color:white;
+    padding:20px;
+    border-bottom-left-radius:24px;
+    border-bottom-right-radius:24px;
+    box-shadow:var(--shadow);
+}
+
+.container{
+    padding:20px;
+    padding-bottom:90px;
+}
+
+.card{
+    background:var(--card);
+    border-radius:18px;
+    padding:15px;
+    margin-bottom:15px;
+    box-shadow:var(--shadow);
+}
+
+.card h3{
+    margin:0 0 10px;
+    color:var(--primary);
+}
+
+.item{
+    display:flex;
+    justify-content:space-between;
+    padding:12px;
+    border-radius:14px;
+    margin-bottom:8px;
+    background:#f9fafb;
+    border-left:6px solid transparent;
+}
+
+.item.active{
+    background:#e0ebff;
+    border-left:6px solid var(--primary);
+    box-shadow:0 0 15px rgba(59,130,246,.6);
+    animation:pulse 1.5s infinite;
+}
+
+@keyframes pulse{
+    0%{box-shadow:0 0 10px rgba(59,130,246,.4);}
+    50%{box-shadow:0 0 20px rgba(59,130,246,.8);}
+    100%{box-shadow:0 0 10px rgba(59,130,246,.4);}
+}
+
+.subject{font-weight:600;}
+.time{font-size:12px;opacity:.7;}
+
+.nav{
+    position:fixed;
+    bottom:0;
+    left:0;
+    right:0;
+    background:white;
+    display:flex;
+    justify-content:space-around;
+    padding:12px 0;
+    box-shadow:0 -5px 20px rgba(0,0,0,.08);
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+    <h2>Jadwal Pelajaran</h2>
+    <p>SMKN 1 Cilamaya · X TJKT 1</p>
+</div>
+
+<div class="container">
+
+<!-- SENIN -->
+<div class="card" data-day="1">
+<h3>Senin</h3>
+<div class="item" data-start="07:00" data-end="08:30"><div class="subject">PIP</div><div class="time">07.00–08.30</div></div>
+<div class="item" data-start="08:30" data-end="10:00"><div class="subject">MTK</div><div class="time">08.30–10.00</div></div>
+<div class="item" data-start="10:30" data-end="11:15"><div class="subject">MTK</div><div class="time">10.30–11.15</div></div>
+<div class="item" data-start="11:15" data-end="12:00"><div class="subject">SUN</div><div class="time">11.15–12.00</div></div>
+<div class="item" data-start="13:00" data-end="14:30"><div class="subject">ING</div><div class="time">13.00–14.30</div></div>
+</div>
+
+<!-- SELASA -->
+<div class="card" data-day="2">
+<h3>Selasa</h3>
+<div class="item" data-start="07:00" data-end="08:30"><div class="subject">PABP</div><div class="time">07.00–08.30</div></div>
+<div class="item" data-start="08:30" data-end="10:00"><div class="subject">MTK</div><div class="time">08.30–10.00</div></div>
+<div class="item" data-start="10:30" data-end="12:00"><div class="subject">DTK</div><div class="time">10.30–12.00</div></div>
+<div class="item" data-start="13:00" data-end="14:30"><div class="subject">DTK</div><div class="time">13.00–14.30</div></div>
+</div>
+
+<!-- RABU -->
+<div class="card" data-day="3">
+<h3>Rabu</h3>
+<div class="item" data-start="07:00" data-end="08:30"><div class="subject">PJOK</div><div class="time">07.00–08.30</div></div>
+<div class="item" data-start="08:30" data-end="10:00"><div class="subject">PIP</div><div class="time">08.30–10.00</div></div>
+<div class="item" data-start="10:30" data-end="12:00"><div class="subject">PIP</div><div class="time">10.30–12.00</div></div>
+<div class="item" data-start="13:00" data-end="14:30"><div class="subject">ING</div><div class="time">13.00–14.30</div></div>
+</div>
+
+<!-- KAMIS -->
+<div class="card" data-day="4">
+<h3>Kamis</h3>
+<div class="item" data-start="07:00" data-end="08:30"><div class="subject">DTK</div><div class="time">07.00–08.30</div></div>
+<div class="item" data-start="08:30" data-end="10:00"><div class="subject">INF</div><div class="time">08.30–10.00</div></div>
+<div class="item" data-start="10:30" data-end="12:00"><div class="subject">IND</div><div class="time">10.30–12.00</div></div>
+<div class="item" data-start="13:00" data-end="14:30"><div class="subject">IND</div><div class="time">13.00–14.30</div></div>
+</div>
+
+<!-- JUMAT -->
+<div class="card" data-day="5">
+<h3>Jumat</h3>
+<div class="item" data-start="08:00" data-end="11:10"><div class="subject">DTK</div><div class="time">08.00–11.10</div></div>
+<div class="item" data-start="13:00" data-end="14:20"><div class="subject">PPS</div><div class="time">13.00–14.20</div></div>
+</div>
+
+</div>
+
+<div class="nav">
+    <div>📅 Jadwal</div>
+    <div>⏰ Live</div>
+    <div>⚙️ Setting</div>
+</div>
+
+<script>
+function checkSchedule(){
+    const now = new Date();
+    const day = now.getDay(); // 1=Senin
+    const time = now.getHours()*60 + now.getMinutes();
+
+    document.querySelectorAll('.item').forEach(i=>i.classList.remove('active'));
+
+    document.querySelectorAll(`.card[data-day="${day}"] .item`).forEach(item=>{
+        const [sh,sm] = item.dataset.start.split(":");
+        const [eh,em] = item.dataset.end.split(":");
+        const start = sh*60 + +sm;
+        const end = eh*60 + +em;
+
+        if(time >= start && time <= end){
+            item.classList.add('active');
+        }
+    });
+}
+
+checkSchedule();
+setInterval(checkSchedule, 60000);
+</script>
+
+</body>
+</html>
