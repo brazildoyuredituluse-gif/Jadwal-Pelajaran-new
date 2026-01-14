@@ -270,3 +270,20 @@ setInterval(updateActiveLesson, 30000);
 </script>
 
     </div>
+    <footer class="footer">
+  © <span id="year"></span> Jadwal Pelajaran TKJ 1| Powered by Rojak
+</footer>
+
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+
+<style>
+.footer {
+  text-align: center;
+  padding: 15px;
+  background: #1f2937;
+  color: #fff;
+  font-size: 14px;
+}
+</style>
