@@ -1,0 +1,7 @@
+{
+  "name": "papan-jadwal-hidup-cloudflare",
+  "private": true,
+  "scripts": {
+    "create-admin": "node scripts/create-admin.js"
+  }
+}

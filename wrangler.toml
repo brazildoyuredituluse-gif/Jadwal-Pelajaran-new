@@ -1,0 +1,10 @@
+name = "papan-jadwal-hidup"
+pages_build_output_dir = "public"
+compatibility_date = "2024-09-01"
+
+# Ganti "papan-jadwal-db" di bawah dengan nama database D1 yang kamu buat,
+# dan database_id dengan ID yang dicetak saat `wrangler d1 create`.
+[[d1_databases]]
+binding = "DB"
+database_name = "papan-jadwal-db"
+database_id = "GANTI_DENGAN_DATABASE_ID_HASIL_WRANGLER_D1_CREATE"

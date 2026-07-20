@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Papan Jadwal Hidup — Sekolah</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="brand">
+      <div class="compass"></div>
+      <div>
+        <h1>Papan Jadwal Hidup</h1>
+        <p id="brandSub">Memuat kelas…</p>
+      </div>
+    </div>
+    <div class="header-right">
+      <div class="class-picker">
+        <label for="classSelect">Kelas</label>
+        <select id="classSelect"></select>
+      </div>
+      <div class="clockbox">
+        <div class="time" id="clockTime">--:--:--</div>
+        <div class="date" id="clockDate">memuat…</div>
+      </div>
+    </div>
+  </header>
+
+  <div class="status-banner" id="statusBanner">
+    <div style="flex:1; min-width:200px;">
+      <div class="mapel" id="statusMapel">—</div>
+      <div class="sub" id="statusSub">—</div>
+    </div>
+    <span class="badge" id="statusRoom">Ruang —</span>
+    <span class="badge" id="statusTime">--:-- – --:--</span>
+  </div>
+
+  <div class="example-note">
+    <b>Aturan ruang:</b> ruang yang menyala mengikuti <b>guru yang sedang mengajar</b>, bukan cuma nama mapelnya.
+    Jadi dua kelas yang sama-sama jam Matematika bisa menyalakan ruang berbeda kalau gurunya beda.
+  </div>
+
+  <section>
+    <h2>Denah Sekolah</h2>
+    <div class="map-legend" id="mapLegend"></div>
+    <div class="map-stage">
+      <div class="map-toprow"><div class="map-compass"></div><span>Berorientasi Utara — sesuai denah "Pembagian Ruang Belajar"</span></div>
+      <div class="campus" id="campus"></div>
+    </div>
+  </section>
+
+  <section>
+    <h2 id="tableTitle">Jadwal Minggu Ini</h2>
+    <div class="table-scroll">
+      <table id="scheduleTable"></table>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <p><b>Catatan data:</b> Jadwal lengkap Senin–Jumat, jam ke-1 s.d. 9. Denah mengikuti posisi asli dari foto "Pembagian Ruang Belajar", orientasi Utara di atas.</p>
+  <p style="margin-top:8px;">Data dilayani lewat API backend (bukan tertanam di halaman) dan hanya bisa diubah oleh admin yang login di <code>/admin</code>.</p>
+</footer>
+
+<script src="js/app.js"></script>
+</body>
+</html>

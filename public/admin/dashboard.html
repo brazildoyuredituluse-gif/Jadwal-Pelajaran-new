@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard Admin — Papan Jadwal Hidup</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+<style>
+  .adm-header{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom:22px;}
+  .adm-header h1{font-family:'Space Grotesk',sans-serif; font-size:1.2rem; margin:0;}
+  .adm-header p{font-size:.72rem; color:var(--ink-dim); margin:2px 0 0;}
+  button.btn{
+    background:var(--amber); color:#241505; border:none; border-radius:8px; padding:8px 14px;
+    font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:.78rem; cursor:pointer;
+  }
+  button.btn.secondary{ background:transparent; color:var(--ink); border:1px solid var(--panel-line); }
+  button.btn.danger{ background:#7a2c3a; color:#f2b8c2; }
+  button.btn:disabled{ opacity:.5; cursor:progress; }
+
+  .panel{ background:var(--panel); border:1px solid var(--panel-line); border-radius:12px; padding:18px; margin-bottom:22px; }
+  .panel h2{ font-family:'Space Grotesk',sans-serif; font-size:.9rem; margin:0 0 14px; text-transform:uppercase; letter-spacing:.06em; color:var(--ink-dim); }
+
+  .row{ display:flex; gap:10px; flex-wrap:wrap; align-items:flex-end; margin-bottom:12px; }
+  .row .field{ flex:1; min-width:140px; }
+  .field label{ display:block; font-size:.65rem; color:var(--ink-dim); margin-bottom:4px; text-transform:uppercase; letter-spacing:.05em; }
+  input, select{
+    width:100%; padding:8px 10px; background:#0f2038; border:1px solid var(--panel-line); border-radius:8px;
+    color:var(--ink); font-family:'IBM Plex Mono',monospace; font-size:.8rem;
+  }
+  input:focus, select:focus{ outline:1px solid var(--amber); border-color:var(--amber); }
+  label.chk{ display:flex; align-items:center; gap:6px; font-size:.72rem; color:var(--ink-dim); }
+  label.chk input{ width:auto; }
+
+  ul.list{ list-style:none; margin:0; padding:0; }
+  ul.list li{
+    display:flex; justify-content:space-between; align-items:center; gap:10px;
+    padding:8px 10px; border-bottom:1px solid var(--panel-line); font-size:.78rem;
+  }
+  ul.list li:last-child{ border-bottom:none; }
+  ul.list li .meta{ color:var(--ink-dim); font-size:.68rem; }
+
+  .grid-table{ overflow-x:auto; border:1px solid var(--panel-line); border-radius:10px; }
+  table.editor{ border-collapse:collapse; width:100%; min-width:900px; font-size:.72rem; }
+  table.editor th, table.editor td{ border:1px solid var(--panel-line); padding:6px; text-align:center; background:#0f1f36; }
+  table.editor thead th{ background:#122540; color:var(--ink-dim); }
+  table.editor tbody th{ background:#0f2038; color:var(--ink-dim); white-space:nowrap; }
+  table.editor select{ font-size:.68rem; padding:5px 6px; }
+
+  .msg{ font-size:.75rem; margin-top:8px; min-height:16px; }
+  .msg.error{ color:#f2b8c2; }
+  .msg.ok{ color:#8fd6a8; }
+  .hint{ font-size:.68rem; color:var(--ink-dim); margin:0 0 12px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="adm-header">
+    <div>
+      <h1>Dashboard Admin</h1>
+      <p id="whoami">Papan Jadwal Hidup</p>
+    </div>
+    <div style="display:flex; gap:8px;">
+      <a href="../index.html" target="_blank"><button class="btn secondary" type="button">Lihat Halaman Publik</button></a>
+      <button class="btn secondary" id="logoutBtn" type="button">Keluar</button>
+    </div>
+  </div>
+
+  <div id="globalMsg" class="msg"></div>
+
+  <!-- ===== KELAS ===== -->
+  <div class="panel">
+    <h2>Kelola Kelas</h2>
+    <div class="row">
+      <div class="field"><label>Nama Kelas</label><input id="newClassName" placeholder="cth. 11 TJKT 1"></div>
+      <div class="field" style="max-width:110px;"><label>Urutan</label><input id="newClassOrder" type="number" value="0"></div>
+      <button class="btn" id="addClassBtn" type="button">Tambah Kelas</button>
+    </div>
+    <ul class="list" id="classList"></ul>
+  </div>
+
+  <!-- ===== GURU ===== -->
+  <div class="panel">
+    <h2>Kelola Guru</h2>
+    <p class="hint">Setiap guru "menempati" satu ruang di denah. Saat guru itu mengajar (di kelas manapun), ruang itu yang menyala.</p>
+    <div class="row">
+      <div class="field"><label>Nama Guru</label><input id="newTeacherName" placeholder="cth. Ema"></div>
+      <div class="field"><label>Ruang</label><select id="newTeacherRoom"></select></div>
+      <button class="btn" id="addTeacherBtn" type="button">Tambah Guru</button>
+    </div>
+    <ul class="list" id="teacherList"></ul>
+  </div>
+
+  <!-- ===== MAPEL ===== -->
+  <div class="panel">
+    <h2>Kelola Mata Pelajaran</h2>
+    <div class="row">
+      <div class="field"><label>Kode Mapel</label><input id="newSubjCode" placeholder="cth. MTK"></div>
+      <div class="field"><label>Nama Tampilan</label><input id="newSubjName" placeholder="cth. Matematika"></div>
+      <label class="chk"><input type="checkbox" id="newSubjField"> Nyalakan Lapangan bila tanpa guru tetap</label>
+      <button class="btn" id="addSubjBtn" type="button">Simpan Mapel</button>
+    </div>
+    <ul class="list" id="subjList"></ul>
+  </div>
+
+  <!-- ===== JADWAL ===== -->
+  <div class="panel">
+    <h2>Edit Jadwal</h2>
+    <div class="row">
+      <div class="field" style="max-width:240px;">
+        <label>Pilih Kelas</label>
+        <select id="scheduleClassSelect"></select>
+      </div>
+    </div>
+    <div class="grid-table">
+      <table class="editor" id="editorTable"></table>
+    </div>
+  </div>
+
+</div>
+<script src="js/admin.js"></script>
+</body>
+</html>
